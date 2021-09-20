@@ -16,16 +16,18 @@ export class Point {
     return `(${this.x}, ${this.y})`;
   }
 
-  public distance(...args: any): number {
-    let dx: number = 0 - Number(this.x);
-    let dy: number = 0 - Number(this.y);
+  public distance(other: Point)
+  public distance(x: number, y: number)
+  public distance(xOrPoint, y?): number {
+    let dx: number = 0 - this.x;
+    let dy: number = 0 - this.y;
 
-    if (args[0] instanceof Point) {
-      dx = Number(args[0].x) - Number(this.x);
-      dy = Number(args[0].y) - Number(this.y);
-    } else if (args.length === 2) {
-      dx = Number(args[0]) - Number(this.x);
-      dy = Number(args[1]) - Number(this.y);
+    if (xOrPoint instanceof Point) {
+      dx = xOrPoint.x - this.x;
+      dy = xOrPoint.y - this.y;
+    } else if (typeof xOrPoint === 'number') {
+      dx = xOrPoint - this.x;
+      dy = y - this.y;
     }
 
     return Math.sqrt(dx * dx + dy * dy);

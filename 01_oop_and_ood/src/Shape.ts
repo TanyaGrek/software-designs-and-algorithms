@@ -13,6 +13,7 @@ export abstract class Shape {
   protected points: Point[];
 
   constructor(points = pointsDefault, color= 'green', filled = true) {
+    if (points.length < 3) throw new Error('Not enough points')
     this.color = color;
     this.filled = filled;
     this.points = points;
